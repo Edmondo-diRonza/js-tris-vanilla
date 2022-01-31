@@ -63,9 +63,14 @@ const addSign2Players = (id) => {
 
 const addSignVersusComputer = (id) => {
   if (round < 9 && !gameOver) {
-    if (!round % 2) {
-      injectSign(id, "x");
-      !gameOver ? setTimeout(() => computerPlayer(), 400) : null;
+    if (!round + (1 % 2)) {
+      if (injectSign(id, "x") && !gameOver) {
+        round++;
+        setTimeout(() => {
+          computerPlayer();
+          round++;
+        }, 50);
+      }
     }
   } else alert("Partita Terminata");
 };
@@ -88,7 +93,6 @@ const addSignOnArray = (id, symbol) => {
   gameStatus[symbol].push(id - 1);
   if (checkWin(symbol)) {
     gameOver = true;
-    console.log(`Ha vinto ${symbol}`);
   }
 };
 
@@ -101,8 +105,10 @@ const checkWin = (symbol) => {
       }
       if (counter === 3) {
         highlightWin(winningState[i]);
+        injectTextOverlay(`Ha vinto ${symbol.toUpperCase()}!`, 4000);
+
         injectStatusMessage(
-          `<strong>Ha vinto ${symbol.toUpperCase()}</strong>`
+          `<strong>Ha vinto ${symbol.toUpperCase()}!</strong>`
         );
         return true;
       }
@@ -110,8 +116,10 @@ const checkWin = (symbol) => {
         round === 8 &&
         j === gameStatus[symbol].length - 1 &&
         i === winningState.length - 1
-      )
+      ) {
         injectStatusMessage("Pareggio");
+        injectTextOverlay(`Pareggio :(`, 4000);
+      }
     }
   }
 };
@@ -120,7 +128,7 @@ const highlightWin = (winArray) => {
   for (let i = 1; i <= 9; i++) {
     document.getElementById(i).classList.remove("called-x");
     document.getElementById(i).classList.remove("called-o");
-    if (!winArray.includes(i-1)) {
+    if (!winArray.includes(i - 1)) {
       document.getElementById(i).classList.add("greyed-font");
     }
   }
@@ -173,7 +181,16 @@ const freeBoxId = (symbol) => {
 
 const computerPlayer = () => {
   const freeBoxes = freeBoxId();
-  console.log(freeBoxes);
   let random = Math.floor(Math.random() * (freeBoxes.length - 1) + 1);
   injectSign(freeBoxes[random], "o");
+};
+
+const injectTextOverlay = (message, time = 4000) => {
+  const text = document.getElementById("overlay-text");
+  const overlay = document.getElementById("overlay-id");
+  text.innerText = message;
+  overlay.classList.remove("hide");
+  setTimeout(() => {
+    overlay.classList.add("hide");
+  }, time);
 };
