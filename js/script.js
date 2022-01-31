@@ -37,6 +37,16 @@ const createGameField = (rows, type = 2) => {
   grid += `</table>`;
   document.getElementById("game-field").innerHTML = grid;
 };
+const injectStatusMessage = (message) => {
+  let targetNode = document.getElementById("statusList");
+  let oldMessages = targetNode.innerHTML;
+  // let data = Date.now();
+  // let currentTime = `${data.getHours()} : ${data.getMinutes} : ${
+  //   data.getSeconds
+  // }`;
+  targetNode.innerHTML = `${oldMessages} <li><i class="fas fa-robot"></i> > <span class="li-message">${message}</span></li>`;
+};
+
 createGameField(3, 1);
 
 const addSign2Players = (id) => {
@@ -90,6 +100,7 @@ const checkWin = (symbol) => {
       }
       if (counter === 3) {
         highlightWin(winningState[i]);
+        injectStatusMessage(`<strong>Ha vinto ${symbol.toUpperCase()}</strong>`);
         return true;
       }
     }
@@ -124,10 +135,12 @@ const resetGame = () => {
 };
 
 const twoPlayersGame = () => {
+  injectStatusMessage("Modalità due giocatori!");
   createGameField(3, 2);
   resetGame();
 };
 const versusComputerGame = () => {
+  injectStatusMessage("Modalità Contro il Computer");
   createGameField(3, 1);
   resetGame();
 };
