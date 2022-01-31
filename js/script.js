@@ -79,6 +79,7 @@ const injectSign = (id, symbol, clean = false) => {
   else {
     currentSign.innerText = symbol;
     !clean && addSignOnArray(id, symbol);
+    !clean && currentSign.classList.add(`called-${symbol}`);
     return true;
   }
 };
@@ -100,15 +101,29 @@ const checkWin = (symbol) => {
       }
       if (counter === 3) {
         highlightWin(winningState[i]);
-        injectStatusMessage(`<strong>Ha vinto ${symbol.toUpperCase()}</strong>`);
+        injectStatusMessage(
+          `<strong>Ha vinto ${symbol.toUpperCase()}</strong>`
+        );
         return true;
       }
+      if (
+        round === 8 &&
+        j === gameStatus[symbol].length - 1 &&
+        i === winningState.length - 1
+      )
+        injectStatusMessage("Pareggio");
     }
   }
-  return false;
 };
 
 const highlightWin = (winArray) => {
+  for (let i = 1; i <= 9; i++) {
+    document.getElementById(i).classList.remove("called-x");
+    document.getElementById(i).classList.remove("called-o");
+    if (!winArray.includes(i-1)) {
+      document.getElementById(i).classList.add("greyed-font");
+    }
+  }
   for (let i = 0; i < winArray.length; i++) {
     document.getElementById(winArray[i] + 1).classList.add("win");
   }
@@ -131,6 +146,9 @@ const resetGame = () => {
   for (let i = 1; i < 10; i++) {
     injectSign(i, "", true);
     document.getElementById(i).classList.remove("win");
+    document.getElementById(i).classList.remove("called-x");
+    document.getElementById(i).classList.remove("called-o");
+    document.getElementById(i).classList.remove("greyed-font");
   }
 };
 
@@ -157,6 +175,5 @@ const computerPlayer = () => {
   const freeBoxes = freeBoxId();
   console.log(freeBoxes);
   let random = Math.floor(Math.random() * (freeBoxes.length - 1) + 1);
-  console.log(random);
   injectSign(freeBoxes[random], "o");
 };

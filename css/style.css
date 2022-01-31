@@ -103,6 +103,8 @@ td {
   border: solid 10px black;
   text-align: center;
   color: black;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 120px;
   font-family: sans-serif;
   font-size: 130px;
   text-transform: uppercase;
@@ -111,13 +113,10 @@ td {
 td:hover {
   /* background-color: #1BE7FF; */
   background-color: #e4ff1a;
+  background-color: rgba(223, 162, 17, 0.5);
   color: black;
 }
 
-.win {
-  background-color: #e8aa14;
-  color: black;
-}
 .win:hover {
   background-color: #e8aa14;
 }
@@ -127,6 +126,21 @@ td:hover {
 }
 .forbidden:hover {
   background-color: #ff5714;
+}
+.called-x {
+  background-color: rgba(1, 52, 255, 0.3);
+  text-shadow: 0px 0px 30px white;
+}
+.called-o {
+  background-color: #ff5714a6;
+  text-shadow: 0px 0px 30px white;
+}
+.win {
+  background-color: #e8aa14;
+  color: black;
+}
+.greyed-font {
+  color: rgba(0, 0, 0, 0.3);
 }
 
 /* TYP */
