@@ -1,5 +1,6 @@
 let round = 0; //contatore turno
 let gameOver = false; // flag fine partita
+let gameType = 1; //1 computer - 2 due giocatori
 
 const gameStatus = {
   x: new Array(),
@@ -161,11 +162,13 @@ const resetGame = () => {
 };
 
 const twoPlayersGame = () => {
+  gameType = 2;
   injectStatusMessage("Modalità due giocatori!");
   createGameField(3, 2);
   resetGame();
 };
 const versusComputerGame = () => {
+  gameType = 1;
   injectStatusMessage("Modalità Contro il Computer");
   createGameField(3, 1);
   resetGame();
@@ -181,16 +184,42 @@ const freeBoxId = (symbol) => {
 
 const computerPlayer = () => {
   const freeBoxes = freeBoxId();
+  console.log(freeBoxes);
+
   let random = Math.floor(Math.random() * (freeBoxes.length - 1) + 1);
-  injectSign(freeBoxes[random], "o");
+  //cerco di mettere la o al centro oppure casualmente
+  round === 1
+    ? injectSign(5, "o")
+      ? null
+      : injectSign(freeBoxes[random], "o")
+    : injectSign(freeBoxes[random], "o");
+
+  if (round > 1) {
+    // for (let i = 0; i < freeBoxes.length; i++) {
+
+    // }
+    injectSign(freeBoxes[random], "o");
+  }
 };
 
 const injectTextOverlay = (message, time = 4000) => {
   const text = document.getElementById("overlay-text");
   const overlay = document.getElementById("overlay-id");
+  const playAgain = document.getElementById("play-again");
   text.innerText = message;
   overlay.classList.remove("hide");
   setTimeout(() => {
     overlay.classList.add("hide");
   }, time);
+  setTimeout(() => {
+    playAgain.classList.remove("hide");
+  }, time + 2500);
+  setTimeout(() => {
+    playAgain.classList.add("hide");
+  }, 20000);
+};
+
+const playAgain = () => {
+  gameType === 1 ? versusComputerGame() : twoPlayersGame();
+  document.getElementById("play-again").classList.add("hide");
 };
