@@ -23,10 +23,19 @@
         <button class="btn" onclick="versusComputerGame()">
           Versus Computer
         </button>
-        <button class="btn" onclick="twoPlayersGame()">Two Players</button>
+        <button class="btn" onclick="twoPlayersGame()">Due Giocatori</button>
       </aside>
       <main>
+        <div class="portrait-title">
+          <h1>Tic Tac Toe</h1>
+        </div>
         <div id="game-field"></div>
+        <div class="portrait-buttons">
+          <button class="btn" onclick="versusComputerGame()">
+            Versus Computer
+          </button>
+          <button class="btn" onclick="twoPlayersGame()">Due Giocatori</button>
+        </div>
       </main>
       <div class="overlay hide" id="overlay-id">
         <div id="overlay-text"></div>
@@ -35,7 +44,6 @@
         <div class="text-replay">
           <p>PLAY AGAIN <i class="fas fa-redo"></i></p>
         </div>
-        
       </div>
     </div>
     <script src="js/script.js"></script>
