@@ -186,7 +186,6 @@ h1 {
 }
 
 /* MEDIA QUERIES  */
-
 @media screen and (max-width: 824px) {
   table {
     width: 70vh;
