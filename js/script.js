@@ -22,6 +22,11 @@ const winningState = [
   [0, 4, 8],
 ];
 
+let winObj = {
+  x: 0,
+  o: 0,
+};
+
 const createGameField = (rows, type = 2) => {
   let grid = `<table> <tr>`;
   const squareTable = rows * rows;
@@ -35,17 +40,12 @@ const createGameField = (rows, type = 2) => {
       grid += `</tr></table>`;
     }
   }
-  // grid += `</table>`;
   document.getElementById("game-field").innerHTML = grid;
 };
 // Funzione per iniettare testo nella status bar
 const injectStatusMessage = (message) => {
   let targetNode = document.getElementById("statusList");
   let oldMessages = targetNode.innerHTML;
-  // let data = Date.now();
-  // let currentTime = `${data.getHours()} : ${data.getMinutes} : ${
-  //   data.getSeconds
-  // }`;
   targetNode.innerHTML = `${oldMessages} <li><i class="fas fa-robot"></i> > <span class="li-message">${message}</span></li>`;
   return true;
 };
@@ -73,7 +73,7 @@ const addSignVersusComputer = (idCella) => {
         setTimeout(() => {
           computerPlayer();
           round++;
-        }, 50);
+        }, 100);
       }
     }
   } else alert("Partita Terminata");
@@ -101,6 +101,15 @@ const addSignOnArray = (id, symbol) => {
   }
 };
 
+const injectScore = (symbol, score) => {
+  let target = document.getElementById(`${symbol}-score`);  
+  target.innerText = score;
+};
+const resetScore = () => {
+  injectScore("x", 0);
+  injectScore("o", 0);
+};
+
 const checkWin = (symbol) => {
   let max = 0;
   for (let i = 0; i < winningState.length; i++) {
@@ -112,6 +121,8 @@ const checkWin = (symbol) => {
       if (counter === 3) {
         highlightWin(winningState[i]);
         injectTextOverlay(`Ha vinto ${symbol.toUpperCase()}!`, 4000);
+        winObj[symbol]++;
+        injectScore(symbol, winObj[symbol]);
         injectStatusMessage(
           `<strong>Ha vinto ${symbol.toUpperCase()}!</strong>`
         );
@@ -167,12 +178,14 @@ const resetGame = () => {
 };
 
 const twoPlayersGame = () => {
+  gameType === 1 && resetScore(); //se provengo da altra modalità di gioco, resetto il punteggio
   gameType = 2;
   injectStatusMessage("Modalità due giocatori!");
   createGameField(3, 2);
   resetGame();
 };
 const versusComputerGame = () => {
+  gameType === 2 && resetScore(); //se provengo da altra modalità di gioco, resetto il punteggio
   gameType = 1;
   injectStatusMessage("Modalità Contro il Computer");
   createGameField(3, 1);
@@ -246,7 +259,7 @@ const computerPlayer = () => {
       }
     } else if (!!aboutToWin("o", 1)) {
       // altrimenti controllo se ci sono celle favorevoli dove ottenere almeno due O in posizione vincente
-      let target = aboutToWin("o", 1);      
+      let target = aboutToWin("o", 1);
       // for (let i = 0; i < target.length; i++) {
       //   console.log(i)
       //   if (injectSign(freeBoxFromArray(target[i]), "o")) {
