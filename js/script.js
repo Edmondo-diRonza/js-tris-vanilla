@@ -79,6 +79,7 @@ const addSignVersusComputer = (idCella) => {
   } else alert("Partita Terminata");
 };
 
+//funzione che inietta un simbolo nell'id specificato, se risulta già impegnato restituisce false
 const injectSign = (id, symbol, clean = false) => {
   if (!id) return false;
   const currentSign = document.getElementById(id);
@@ -92,6 +93,7 @@ const injectSign = (id, symbol, clean = false) => {
   }
 };
 
+//funzione che memorizza nell'array lo stato della partita
 const addSignOnArray = (id, symbol) => {
   gameStatus[symbol].push(id - 1);
   if (checkWin(symbol)) {
@@ -225,8 +227,6 @@ const computerPlayer = () => {
     if (!!aboutToWin("o", 2)) {
       // Prima controllo se ci sono possibilità di vincere ed eventualmente vinco!
       let target = aboutToWin("o", 2);
-      console.log("Ho individuato una possibilità di vincità, hai perso! ");
-      console.log(target);
       for (let i = 0; i < target.length; i++) {
         let idTarget = freeBoxFromArray(target[i]);
         if (injectSign(idTarget, "o")) i = target.length;
@@ -234,9 +234,8 @@ const computerPlayer = () => {
     } else if (!!aboutToWin("x", 2)) {
       // altrimenti provo a difendersi controllando se ci sono posizioni vincenti per lo sfidante
       let target = aboutToWin("x", 2);
-      console.log("Stai cercando di fregarmi? Provo a difendermi! ");
       if (target.length >= 2) {
-        injectTextOverlay("Ottimo Trick!", 5000, false);
+        injectTextOverlay("Ottimo Trick!", 2000, false);
         injectStatusMessage(
           "Bella mossa, Amico! Non sbagliare proprio adesso!"
         );
@@ -245,23 +244,40 @@ const computerPlayer = () => {
         let idTarget = freeBoxFromArray(target[i]);
         if (injectSign(idTarget, "o")) i = target.length;
       }
+    } else if (!!aboutToWin("o", 1)) {
+      // altrimenti controllo se ci sono celle favorevoli dove ottenere almeno due O in posizione vincente
+      let target = aboutToWin("o", 1);      
+      // for (let i = 0; i < target.length; i++) {
+      //   console.log(i)
+      //   if (injectSign(freeBoxFromArray(target[i]), "o")) {
+      //     break;
+      //   }
+      // }
+      let randomTarget = Math.floor(Math.random() * target.length); //scelgo casualmente una delle possibilità favorevoli proposte
+      injectSign(freeBoxFromArray(target[randomTarget]), "o");
     } else {
-      console.log(
-        "Target consigliati ma non ancora implementati",
-        aboutToWin("o", 1)
-      );
+      //se non esistono celle favoreli, inietto la O in una posizione casuale
       injectSign(freeBoxes[random], "o");
     }
   }
 };
 
 const freeBoxFromArray = (array) => {
+  let freeId = [];
   for (let i = 0; i < array.length; i++) {
     if (!document.getElementById(array[i] + 1).innerText) {
-      return array[i] + 1;
+      freeId.push(array[i] + 1); // array delle celle libere
     }
   }
-  return false;
+  if (freeId.length === 1) {
+    // se ottengo solo una cella vuota restituisco quella
+    return freeId[0];
+  } else {
+    // altrimenti ne restituisco una a caso
+    // Math.floor(Math.random() * (max - min + 1) + min)
+    let random = Math.floor(Math.random() * freeId.length);
+    return freeId[random];
+  }
 };
 
 const injectTextOverlay = (message, time = 4000, gameEnded = true) => {
