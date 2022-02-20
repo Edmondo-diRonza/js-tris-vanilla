@@ -73,7 +73,9 @@ const addSignVersusComputer = (idCella) => {
         setTimeout(() => {
           computerPlayer();
           round++;
-        }, 100);
+        }, 200);
+      } else {
+        forbiddenBlink(idCella);
       }
     }
   } else alert("Partita Terminata");
@@ -89,6 +91,7 @@ const injectSign = (id, symbol, clean = false) => {
     currentSign.innerText = symbol;
     !clean && addSignOnArray(id, symbol); //se clean è true, sono in fase di reset della partita
     !clean && currentSign.classList.add(`called-${symbol}`);
+    !clean && currentSign.classList.add("cell-effects");
     return true;
   }
 };
@@ -102,7 +105,7 @@ const addSignOnArray = (id, symbol) => {
 };
 
 const injectScore = (symbol, score) => {
-  let target = document.getElementById(`${symbol}-score`);  
+  let target = document.getElementById(`${symbol}-score`);
   target.innerText = score;
 };
 const resetScore = () => {
@@ -134,7 +137,7 @@ const checkWin = (symbol) => {
         i === winningState.length - 1
       ) {
         injectStatusMessage("Pareggio");
-        injectTextOverlay(`Pareggio :(`, 4000);
+        injectTextOverlay(`Pareggio :(`, 0);
       }
     }
   }
@@ -145,6 +148,7 @@ const highlightWin = (winArray) => {
   for (let i = 1; i <= 9; i++) {
     document.getElementById(i).classList.remove("called-x");
     document.getElementById(i).classList.remove("called-o");
+    document.getElementById(i).classList.add("grid-blurring");
     if (!winArray.includes(i - 1)) {
       document.getElementById(i).classList.add("greyed-font");
     }
@@ -154,12 +158,12 @@ const highlightWin = (winArray) => {
   }
 };
 
-const forbiddenBlink = (id) => {
+const forbiddenBlink = (id) => {  
   let node = document.getElementById(id);
   node.classList.add("forbidden");
   setTimeout(() => {
     node.classList.remove("forbidden");
-  }, 2000);
+  }, 1000);
 };
 
 const resetGame = () => {
@@ -174,6 +178,7 @@ const resetGame = () => {
     document.getElementById(i).classList.remove("called-x");
     document.getElementById(i).classList.remove("called-o");
     document.getElementById(i).classList.remove("greyed-font");
+    document.getElementById(i).classList.remove("grid-blurring");
   }
 };
 
@@ -248,7 +253,7 @@ const computerPlayer = () => {
       // altrimenti provo a difendersi controllando se ci sono posizioni vincenti per lo sfidante
       let target = aboutToWin("x", 2);
       if (target.length >= 2) {
-        injectTextOverlay("Ottimo Trick!", 2000, false);
+        injectTextOverlay("Ottimo Trick!", 2000, false, true);
         injectStatusMessage(
           "Bella mossa, Amico! Non sbagliare proprio adesso!"
         );
@@ -293,19 +298,40 @@ const freeBoxFromArray = (array) => {
   }
 };
 
-const injectTextOverlay = (message, time = 4000, gameEnded = true) => {
+const injectTextOverlay = (
+  message,
+  time = 4000,
+  gameEnded = true,
+  beatMode = false
+) => {
   const text = document.getElementById("overlay-text");
   const overlay = document.getElementById("overlay-id");
   const playAgain = document.getElementById("play-again");
   text.innerText = message;
-  overlay.classList.remove("hide");
+  let internalTime;
+  time !== 0 ? (internalTime = time) : (internalTime = 4000);
+  setTimeout(() => {
+    overlay.classList.remove("hide");
+  }, time / 2.8);
+
+  beatMode &&
+    setTimeout(() => {
+      overlay.classList.add("beat");
+    }, time / 2);
+
   setTimeout(() => {
     overlay.classList.add("hide");
-  }, time);
+  }, internalTime);
+
+  beatMode &&
+    setTimeout(() => {
+      overlay.classList.remove("beat");
+    }, internalTime);
+
   gameEnded &&
     setTimeout(() => {
       playAgain.classList.remove("hide");
-    }, time + 2500);
+    }, internalTime + 2500);
   gameEnded &&
     setTimeout(() => {
       playAgain.classList.add("hide");
