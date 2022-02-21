@@ -8,13 +8,12 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/neon.css">
     <title>Tris</title>
   </head>
   <body>
@@ -26,21 +25,34 @@
             <ul id="statusList">
               <li><strong>Partita Versus Computer!</strong></li>
             </ul>
-          </div>
-          <button class="btn" onclick="versusComputerGame()">
-            Versus Computer
-          </button>
-          <button class="btn" onclick="twoPlayersGame()">Due Giocatori</button>
-          <div class="score-div">
-            <p>X: <span id="x-score">0</span></p>
-            <p>O: <span id="o-score">0</span></p>
-          </div>
+          </div>          
         </aside>
         <div class="main-content">
           <!-- <div class="portrait-title">
             <h1>Tic Tac Toe</h1>
           </div> -->
-          <div id="game-field"></div>
+          <div class="game-wrapper">
+            <div class="game-container">
+              <div class="game-score">
+                <p class="player-symbol">X</p> 
+                <p id="x-score">0</p>            
+              </div>
+              <div id="game-field"></div>
+              <div class="game-score">
+                <p class="player-symbol">O</p>
+                <p id="o-score">0</p>
+              </div>
+            </div>
+            <div class="game-buttons">
+              <button class="btn" onclick="versusComputerGame()">
+                <i class="fa-solid fa-robot"></i> Computer
+              </button>
+              <button class="btn" onclick="twoPlayersGame()"><i class="fa-solid fa-user-group"></i> Due Giocatori</button>
+            </div>
+          </div>
+          
+          
+          
           <!-- <div class="portrait-buttons">
             <button class="btn" onclick="versusComputerGame()">
               Versus Computer
@@ -55,10 +67,30 @@
           <div class="text-replay">
             <p>PLAY AGAIN <i class="fas fa-redo"></i></p>
           </div>
-        </div>
+        </div>        
       </main>
       <footer class="copyright">
-        <span>© Edmondo di Ronza</span><span><i class="fa-brands fa-linkedin-in"></i></span>
+        <span> Copyright © 2022 - Edmondo di Ronza</span>
+        
+        <img src="img/pngwing.png" alt="Logo" class="logo-img">
+        
+        <ul class="list contacts">
+          <li>
+            <a href="mailto:eddironz@gmail.com" alt="Feel free to Email Me!">
+              <i class="fa-brands fa-google"></i>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/edmondo-di-ronza/"target="_blank" alt="My LinkedIn profile">
+              <i class="fa-brands fa-linkedin"></i>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/Edmondo-diRonza"target="_blank"alt="My Repositories on GitHub">
+              <i class="fa-brands fa-github"></i>
+            </a>
+          </li>          
+        </ul>        
       </footer>
   </div>
     <script src="js/script.js"></script>

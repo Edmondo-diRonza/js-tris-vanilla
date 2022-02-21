@@ -47,6 +47,7 @@ const injectStatusMessage = (message) => {
   let targetNode = document.getElementById("statusList");
   let oldMessages = targetNode.innerHTML;
   targetNode.innerHTML = `${oldMessages} <li><i class="fas fa-robot"></i> > <span class="li-message">${message}</span></li>`;
+  targetNode.scrollIntoView({behavior: "smooth", block: "end"});
   return true;
 };
 
@@ -158,7 +159,7 @@ const highlightWin = (winArray) => {
   }
 };
 
-const forbiddenBlink = (id) => {  
+const forbiddenBlink = (id) => {
   let node = document.getElementById(id);
   node.classList.add("forbidden");
   setTimeout(() => {
@@ -247,7 +248,9 @@ const computerPlayer = () => {
       let target = aboutToWin("o", 2);
       for (let i = 0; i < target.length; i++) {
         let idTarget = freeBoxFromArray(target[i]);
-        if (injectSign(idTarget, "o")) i = target.length;
+        if (injectSign(idTarget, "o")) {
+          i = target.length;
+        }
       }
     } else if (!!aboutToWin("x", 2)) {
       // altrimenti provo a difendersi controllando se ci sono posizioni vincenti per lo sfidante
@@ -271,7 +274,7 @@ const computerPlayer = () => {
       //     break;
       //   }
       // }
-      let randomTarget = Math.floor(Math.random() * target.length); //scelgo casualmente una delle possibilità favorevoli proposte
+      let randomTarget = Math.floor(Math.random() * target.length); //scelgo casualmente una delle possibilità favorevoli proposte; qui ci sarebbe margine di miglioramento.
       injectSign(freeBoxFromArray(target[randomTarget]), "o");
     } else {
       //se non esistono celle favoreli, inietto la O in una posizione casuale
