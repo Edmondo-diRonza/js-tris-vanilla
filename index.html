@@ -18,46 +18,49 @@
     <title>Tris</title>
   </head>
   <body>
-    <div class="page-wrapper">
-      <aside>
-        <h1>Tic Tac Toe</h1>
-        <div class="message-box">
-          <ul id="statusList">
-            <li><strong>Partita Versus Computer!</strong></li>
-          </ul>
-        </div>
-        <button class="btn" onclick="versusComputerGame()">
-          Versus Computer
-        </button>
-        <button class="btn" onclick="twoPlayersGame()">Due Giocatori</button>
-        <div class="score-div">
-          <p>X: <span id="x-score">0</span></p>
-          <p>O: <span id="o-score">0</span></p>
-
-
-        </div>
-      </aside>
+    <div class="page-wrapper">    
       <main>
-        <div class="portrait-title">
-          <h1>Tic Tac Toe</h1>
-        </div>
-        <div id="game-field"></div>
-        <div class="portrait-buttons">
+        <aside>
+          <img src="img/pngwing.png" alt="Logo" class="logo-img"><h1>Tic Tac Toe</h1> 
+          <div class="message-box">
+            <ul id="statusList">
+              <li><strong>Partita Versus Computer!</strong></li>
+            </ul>
+          </div>
           <button class="btn" onclick="versusComputerGame()">
             Versus Computer
           </button>
           <button class="btn" onclick="twoPlayersGame()">Due Giocatori</button>
+          <div class="score-div">
+            <p>X: <span id="x-score">0</span></p>
+            <p>O: <span id="o-score">0</span></p>
+          </div>
+        </aside>
+        <div class="main-content">
+          <!-- <div class="portrait-title">
+            <h1>Tic Tac Toe</h1>
+          </div> -->
+          <div id="game-field"></div>
+          <!-- <div class="portrait-buttons">
+            <button class="btn" onclick="versusComputerGame()">
+              Versus Computer
+            </button>
+            <button class="btn" onclick="twoPlayersGame()">Due Giocatori</button>
+          </div> -->        
+        </div class="main-content">        
+        <div class="overlay hide" id="overlay-id">
+          <div id="overlay-text"></div>
+        </div>
+        <div class="overlay hide" id="play-again" onclick="playAgain()">
+          <div class="text-replay">
+            <p>PLAY AGAIN <i class="fas fa-redo"></i></p>
+          </div>
         </div>
       </main>
-      <div class="overlay hide" id="overlay-id">
-        <div id="overlay-text"></div>
-      </div>
-      <div class="overlay hide" id="play-again" onclick="playAgain()">
-        <div class="text-replay">
-          <p>PLAY AGAIN <i class="fas fa-redo"></i></p>
-        </div>
-      </div>
-    </div>
+      <footer class="copyright">
+        <span>© Edmondo di Ronza</span><span><i class="fa-brands fa-linkedin-in"></i></span>
+      </footer>
+  </div>
     <script src="js/script.js"></script>
   </body>
 </html>
