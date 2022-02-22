@@ -6,6 +6,7 @@
 }
 html {
   font-size: 16px;
+  scroll-behavior: smooth;
   transition: all 1s;
 }
 .page-wrapper {
@@ -31,7 +32,7 @@ aside {
   width: 40px;
 }
 .message-box {
-  padding: 0px 10px;
+  padding: 6px 10px;
   display: flex;
   flex-direction: column;
   margin: 20px 0px;
@@ -46,13 +47,19 @@ aside {
 .message-box li {
   list-style: none;
   text-align: left;
-  margin-top: 10px;
+  margin:5px 0;
   font-size: 1.25rem;
   color: #392654;
 }
+.message-box li i {
+  font-size: .875rem ;
+  color : rgb(90, 90, 90);
+}
 .li-message {
   font-style: italic;
-  color: #392654;
+  color: #3a3a3c;
+  font-size: 1.5rem;
+  font-family: 'VT323', monospace;
 }
 
 .btn {
@@ -103,7 +110,7 @@ aside {
   padding: 2px;
   font-size: 2rem;
   border-radius: 20%;
-  border: .5rem solid #0000009c;
+  border: .4rem solid #0000009c;
   height: 8rem;
   width: 8rem;
   margin: 0 10px;
@@ -124,9 +131,7 @@ aside {
   align-items: center;
   margin-bottom: 30px;  
 }
-table {
-  /* width: 60vh;
-  height: 60vh; */
+table {  
   width: 50rem;
   height: 50rem;
   border: .625rem solid #0000009c;
@@ -258,9 +263,9 @@ td:hover {
 .text-replay {
   font-size: 3rem;
   background-color: #fff;
-  padding: 40px;
-  border-radius: 30px;
-  border: 7px solid #392654;
+  padding: 2.5rem;
+  border-radius: 2rem;
+  border: .44rem solid #392654;
   color: #392654;
 }
 .text-replay:hover {
@@ -303,7 +308,7 @@ h1 {
   }
   h1 {
     font-size: 4rem;
-  }
+  }  
 } 
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
