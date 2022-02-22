@@ -4,6 +4,10 @@
   padding: 0;
   user-select: none;
 }
+html {
+  font-size: 16px;
+  transition: all 1s;
+}
 .page-wrapper {
   height: 100vh;
 }
@@ -12,21 +16,14 @@ main {
   display: flex;
   height: calc(100% - 40px);
   width: 100%;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 aside {
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
-  background-color: #ffcc00;
-  /* background: linear-gradient(
-    270deg,
-    hsla(186, 100%, 55%, 1) 0%,
-    hsla(130, 76%, 68%, 1) 100%
-  ); */
   background: linear-gradient(270deg, #ccffff 0%, #99ccff 100%);
   width: 350px;
-  /* border-top-right-radius: 30px; */
   text-align: center;
   padding: 20px 0;
 }
@@ -41,35 +38,23 @@ aside {
   width: 220px;
   height: 70%;
   background-color: white;
-  border-radius: 10px;  
-  border: 2px solid #458bbc;    
+  border-radius: 10px;
+  border: 2px solid #458bbc;
   box-shadow: 0px 0px 10px white;
-  overflow: hidden;  
+  overflow: hidden;
 }
 .message-box li {
   list-style: none;
   text-align: left;
   margin-top: 10px;
   font-size: 1.25rem;
-   color: #392654;
+  color: #392654;
 }
 .li-message {
   font-style: italic;
   color: #392654;
 }
-/* .score-div {
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  margin: 20px 0px;
-  padding: 10px 10px;
-  width: 180px;
-  border: 5px solid #e8aa1485;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px white;
-  font-size: 1, 87rem;
-  font-weight: 700;
-} */
+
 .btn {
   padding: 9px 12px;
   border-radius: 10px;
@@ -83,26 +68,17 @@ aside {
   box-shadow: 0px 0px 12px white;
   max-width: 220px;
   transition: all 1s;
-  font-weight: 00;  
 }
 .btn:hover {
-  /* background-color: #ff5714; */
   background-color: #458bbc;
   color: #fff;
-  box-shadow: 0px 0px 20px white;  
+  box-shadow: 0px 0px 20px white;
 }
 .main-content {
   display: flex;
   margin: auto;
   justify-content: center;
   align-items: center;
-  /* background-color: #E4FF1A; */
-  /* background: linear-gradient(
-    90deg,
-    hsla(186, 100%, 55%, 1) 0%,
-    hsla(67, 100%, 55%, 1) 100%
-  ); */
-  /* background-color: #fff; */
   background-image: url("../img/1624.jpg");
   background-size: cover;
   width: 100%;
@@ -111,12 +87,14 @@ aside {
 .game-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
+  align-items: center;
+  height: 90%;
 }
 .game-container {
-  display: flex;  
+  display: flex;
 }
-.game-score {  
+.game-score {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -125,29 +103,33 @@ aside {
   padding: 2px;
   font-size: 2rem;
   border-radius: 20%;
-  border: 10px solid #0000009c;
+  border: .5rem solid #0000009c;
   height: 8rem;
   width: 8rem;
   margin: 0 10px;
   box-shadow: 0px 0px 30px #fff;
 }
-.player-symbol{
+.player-symbol {
   font-weight: 700;
 }
 .game-buttons {
   text-align: center;
   margin-top: 30px;
 }
-
-.portrait-title,
-.portrait-buttons {
-  display: none;
+.portrait-title
+ {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;  
 }
-
 table {
-  width: 60vh;
-  height: 60vh;
-  border: 10px solid #0000009c;
+  /* width: 60vh;
+  height: 60vh; */
+  width: 50rem;
+  height: 50rem;
+  border: .625rem solid #0000009c;
   border-radius: 20px;
   padding: 20px;
   border-spacing: 10px;
@@ -161,30 +143,29 @@ td {
   border-radius: 5px;
   text-align: center;
   font-family: sans-serif;
+  font-weight: 700;
   font-size: 3.75rem;
   text-transform: uppercase;
   transition: all 1s;
 }
-.cell-effects {
-  background-color: rgba(0, 0, 0, 0.1);
-  font-size: 8.5rem;
-  color: #000;
-  border-radius: 40%;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-}
-.grid-blurring {
-  border: solid 2px rgba(0, 0, 0, 0.4);
-}
 td:hover {
-  /* background-color: #1BE7FF; */
-  /* background-color: rgba(223, 162, 17, 0.5); */
   background-color: #dae8e9;
   color: black;
   border-radius: 30%;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
 }
+.cell-effects {
+  background-color: rgba(0, 0, 0, 0.1);
+  font-size: 7.5rem;
+  color: #000;
+  border-radius: 40%;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+.grid-blurring {
+  border: solid 2px rgba(0, 0, 0, 0.4);
+}
+
 .called-x {
-  /* background-color: rgba(1, 52, 255, 0.3); */
   background-color: #3399cc;
   text-shadow: 0px 0px 30px white;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
@@ -195,8 +176,6 @@ td:hover {
   text-shadow: 0px 0px 10px white;
 }
 .called-o {
-  /* background-color: #ff5714a6; */
-  /* background-color: #e8aa14; */
   background-color: #feb000;
   text-shadow: 0px 0px 30px white;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
@@ -239,7 +218,7 @@ td:hover {
   background-color: #3a3a3c;
   height: 40px;
   color: rgba(255, 255, 255, 0.7);
-} 
+}
 .overlay {
   position: absolute;
   display: flex;
@@ -299,13 +278,13 @@ h1 {
 .list li {
   display: inline-block;
   list-style: none;
-  margin-left: 5px;  
+  margin-left: 5px;
 }
 .list a {
   text-decoration: none;
   color: white;
   padding: 5px;
-  background-color: rgb(90, 90, 90); 
+  background-color: rgb(90, 90, 90);
   border-radius: 5px;
   box-shadow: 0px 0px 3px #fff;
   transition: all 1s;
@@ -313,115 +292,62 @@ h1 {
 .list a:hover {
   box-shadow: 0px 0px 7px #fff;
   color: rgb(90, 90, 90);
-  background-color: #fff; 
-
+  background-color: #fff;
 }
 /* MEDIA QUERIES  */
-@media screen and (max-width: 824px) {
-  table {
-    width: 70vh;
-    height: 70vh;
+
+/* Smallest devices (landscape phones, 360px and up) */
+@media (min-width: 360px) {
+  html {
+    font-size: 5px;
+  }
+  h1 {
+    font-size: 4rem;
+  }
+} 
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  html {
+    font-size: 8px;
   }
 }
-@media screen and (max-width: 1081px) and (orientation: portrait) {
-  aside {
-    display: none;
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  html {
+    font-size: 10px;
+  }  
+}
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  html {
+    font-size: 10px;
   }
-  main {
+  aside {
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
   }
   .portrait-title {
-    display: block;
-  }
-  .portrait-buttons {
-    display: block;
-  }
-
-  table {
-    width: 80vw;
-    height: 80vw;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  aside {
-    /* display: none; */
-    width: 200px;
-    padding-left: 10px;
-  }
-  table {
-    width: 50vh;
-    height: 50vh;
-  }
-  td {
-    font-size: 80px;
-    font-weight: 600;
-  }
-  .message-box li {
-    margin-top: 7px;
-    font-size: 16px;
-  }
-  .btn {
-    padding: 7px 5px;
-    border-radius: 7px;
-    border: 1px solid #0000009c;
-    font-size: 16px;
-    margin: 7px 0px;
-    font-weight: 500;
-    box-shadow: 0px 0px 10px white;
-    max-width: 150px;
-    text-transform: capitalize;
-  }
-  .overlay {
-    font-size: 80px;
-  }
-  .text-replay {
-    font-size: 50px;
-    padding: 20px;
-    border-radius: 20px;
-  }
-}
-@media screen and (max-width: 576px) {
-  aside {
     display: none;
   }
-  table {
-    width: 60vh;
-    height: 60vh;
+  h1 {
+    font-size: 2rem;
   }
-  td {
-    font-size: 80px;
-    font-weight: 600;
-  }
-  .overlay {
-    font-size: 80px;
-  }
-  .text-replay {
-    font-size: 50px;
-    padding: 20px;
-    border-radius: 20px;
+  
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  html {
+    font-size: 12px;
   }
 }
-@media screen and (max-width: 415px) {
-  aside {
-    display: none;
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+  html {
+    font-size: 14px;
   }
-  table {
-    width: 42vh;
-    height: 42vh;
-  }
-  td {
-    font-size: 56px;
-    font-weight: 500;
-  }
-  .overlay {
-    font-size: 40px;
-  }
-  .text-replay {
-    font-size: 30px;
-    padding: 10px;
-    border-radius: 10px;
-  }
+}
+
+/* 
+@media screen and (max-width: 1081px) and (orientation: portrait) {  
 }
