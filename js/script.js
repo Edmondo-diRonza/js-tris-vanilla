@@ -41,11 +41,15 @@ const createGameField = (rows, type = 2) => {
     }
   }
   document.getElementById("game-field").innerHTML = grid;
+  const animationArray = ["bounce-in-top", "roll-in-blurred-left","slide-in-bck-center"];
+  const randomAnimation = Math.floor(Math.random() * animationArray.length);
+  document
+    .querySelector("table")
+    .classList.add(animationArray[randomAnimation]);
 };
 // Funzione per iniettare testo nella status bar
 const injectStatusMessage = (message, color) => {
   let styleColor = "";
-  console.log(color);
   switch (color) {
     case "r":
       styleColor = "#ff5714";
@@ -60,10 +64,9 @@ const injectStatusMessage = (message, color) => {
       styleColor = "blue";
       break;
     default:
-      styleColor = "#392654";
+      styleColor = `${color}`;
       break;
   }
-  console.log(styleColor);
   let targetNode = document.getElementById("statusList");
   let oldMessages = targetNode.innerHTML;
   targetNode.innerHTML = `${oldMessages} <li><i class="fas fa-robot"></i> > <span class="li-message" style="color:${styleColor}">${message}</span></li>`;
@@ -170,7 +173,7 @@ const checkWin = (symbol) => {
 const highlightWin = (winArray) => {
   for (let i = 1; i <= 9; i++) {
     document.getElementById(i).classList.remove("called-x");
-    document.getElementById(i).classList.remove("called-o");
+    document.getElementById(i).classList.remove("called-o");    
     document.getElementById(i).classList.add("grid-blurring");
     if (!winArray.includes(i - 1)) {
       document.getElementById(i).classList.add("greyed-font");
@@ -178,6 +181,7 @@ const highlightWin = (winArray) => {
   }
   for (let i = 0; i < winArray.length; i++) {
     document.getElementById(winArray[i] + 1).classList.add("win");
+    document.getElementById(winArray[i] + 1).classList.add("shake-lr");
   }
 };
 
@@ -202,6 +206,7 @@ const resetGame = () => {
     document.getElementById(i).classList.remove("called-o");
     document.getElementById(i).classList.remove("greyed-font");
     document.getElementById(i).classList.remove("grid-blurring");
+    document.getElementById(i).classList.remove("shake-lr");
   }
 };
 
@@ -215,7 +220,7 @@ const twoPlayersGame = () => {
 const versusComputerGame = () => {
   gameType === 2 && resetScore(); //se provengo da altra modalità di gioco, resetto il punteggio
   gameType = 1;
-  injectStatusMessage("Modalità contro il Computer", "b");
+  injectStatusMessage("Modalità contro il Computer", "r");
   createGameField(3, 1);
   resetGame();
 };
@@ -289,7 +294,7 @@ const computerPlayer = () => {
       }
     } else if (!!aboutToWin("o", 1)) {
       // altrimenti controllo se ci sono celle favorevoli dove ottenere almeno due O in posizione vincente
-      let target = aboutToWin("o", 1);      
+      let target = aboutToWin("o", 1);
       let randomTarget = Math.floor(Math.random() * target.length); //scelgo casualmente una delle possibilità favorevoli proposte; qui ci sarebbe margine di miglioramento.
       injectSign(freeBoxFromArray(target[randomTarget]), "o");
     } else {
@@ -350,11 +355,10 @@ const injectTextOverlay = (
   gameEnded &&
     setTimeout(() => {
       playAgain.classList.remove("hide");
-    }, internalTime + 2500);
-  gameEnded &&
-    setTimeout(() => {
-      playAgain.classList.add("hide");
-    }, 20000);
+      setTimeout(() => {
+        playAgain.classList.add("hide");
+      }, 10000);
+    }, internalTime + 1000);
 };
 
 const playAgain = () => {
