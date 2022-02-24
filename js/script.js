@@ -25,6 +25,7 @@ const winningState = [
 let winObj = {
   x: 0,
   o: 0,
+  totalGames: 0,
 };
 
 const createGameField = (rows, type = 2) => {
@@ -41,14 +42,18 @@ const createGameField = (rows, type = 2) => {
     }
   }
   document.getElementById("game-field").innerHTML = grid;
-  const animationArray = ["bounce-in-top", "roll-in-blurred-left","slide-in-bck-center"];
+  const animationArray = [
+    "bounce-in-top",
+    "roll-in-blurred-left",
+    "slide-in-bck-center",
+  ];
   const randomAnimation = Math.floor(Math.random() * animationArray.length);
   document
     .querySelector("table")
     .classList.add(animationArray[randomAnimation]);
 };
 // Funzione per iniettare testo nella status bar
-const injectStatusMessage = (message, color) => {
+const injectStatusMessage = (message, color, noRobot = false) => {
   let styleColor = "";
   switch (color) {
     case "r":
@@ -69,13 +74,19 @@ const injectStatusMessage = (message, color) => {
   }
   let targetNode = document.getElementById("statusList");
   let oldMessages = targetNode.innerHTML;
-  targetNode.innerHTML = `${oldMessages} <li><i class="fas fa-robot"></i> > <span class="li-message" style="color:${styleColor}">${message}</span></li>`;
+  noRobot
+    ? (targetNode.innerHTML = `${oldMessages} <li><span class="li-message" style="color:${styleColor}">${message}</span></li>`)
+    : (targetNode.innerHTML = `${oldMessages} <li><i class="fas fa-robot"></i> > <span class="li-message" style="color:${styleColor}">${message}</span></li>`);
   targetNode.scrollIntoView({ behavior: "smooth", block: "end" });
   return true;
 };
 
 createGameField(3, 1);
+injectStatusMessage("**** COMMODORE 64", "", true);
+injectStatusMessage("BASIC V2 ****", "", true);
+injectStatusMessage("READY.", "b", true);
 injectStatusMessage("Modalità contro il Computer", "r");
+injectStatusMessage(`Partita n.${winObj.totalGames + 1}`);
 
 //funzione per aggiungere il simbolo X oppure O alternativamente fino al gameover
 const addSign2Players = (idCella) => {
@@ -134,6 +145,11 @@ const injectScore = (symbol, score) => {
   target.innerText = score;
 };
 const resetScore = () => {
+  winObj = {
+    x: 0,
+    o: 0,
+    totalGames: 0,
+  };
   injectScore("x", 0);
   injectScore("o", 0);
 };
@@ -150,10 +166,16 @@ const checkWin = (symbol) => {
         highlightWin(winningState[i]);
         injectTextOverlay(`Ha vinto ${symbol.toUpperCase()}!`, 4000);
         winObj[symbol]++;
+        winObj["totalGames"]++;
         injectScore(symbol, winObj[symbol]);
         injectStatusMessage(
           `Ha vinto ${symbol.toUpperCase()}!`,
           `${symbol === "x" ? "x" : "o"}`
+        );
+        injectStatusMessage(
+          `*** <span style="color:#feb000">X: ${winObj.x} </span> - <span style="color:#3399cc">O: ${winObj.o} </span>***`,
+          "",
+          true
         );
         return true;
       }
@@ -162,8 +184,9 @@ const checkWin = (symbol) => {
         j === gameStatus[symbol].length - 1 &&
         i === winningState.length - 1
       ) {
-        injectStatusMessage("Pareggio");
+        injectStatusMessage("Pareggio", "b");
         injectTextOverlay(`Pareggio :(`, 0);
+        winObj["totalGames"]++;
       }
     }
   }
@@ -173,7 +196,7 @@ const checkWin = (symbol) => {
 const highlightWin = (winArray) => {
   for (let i = 1; i <= 9; i++) {
     document.getElementById(i).classList.remove("called-x");
-    document.getElementById(i).classList.remove("called-o");    
+    document.getElementById(i).classList.remove("called-o");
     document.getElementById(i).classList.add("grid-blurring");
     if (!winArray.includes(i - 1)) {
       document.getElementById(i).classList.add("greyed-font");
@@ -208,6 +231,7 @@ const resetGame = () => {
     document.getElementById(i).classList.remove("grid-blurring");
     document.getElementById(i).classList.remove("shake-lr");
   }
+  injectStatusMessage(`Partita n.${winObj.totalGames + 1}`);
 };
 
 const twoPlayersGame = () => {
@@ -357,7 +381,7 @@ const injectTextOverlay = (
       playAgain.classList.remove("hide");
       setTimeout(() => {
         playAgain.classList.add("hide");
-      }, 10000);
+      }, 15000);
     }, internalTime + 1000);
 };
 

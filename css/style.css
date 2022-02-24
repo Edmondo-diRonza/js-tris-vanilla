@@ -7,7 +7,7 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
-  transition: all 1s;
+  /* transition: all 1s; */
 }
 .page-wrapper {
   height: 100vh;
@@ -100,6 +100,7 @@ aside {
 }
 .game-container {
   display: flex;
+  flex-direction: column;
 }
 .game-score {
   display: flex;
@@ -250,7 +251,7 @@ td:hover {
 .text-replay {
   font-size: 3rem;
   background-color: #fff;
-  padding: 2.5rem;
+  padding: 1.5rem 2.5rem;
   border-radius: 2rem;
   border: .44rem solid #392654;
   color: #392654;
@@ -288,6 +289,15 @@ h1 {
 }
 /* MEDIA QUERIES  */
 
+/* Smallest devices (landscape phones, 3190px and up) */
+@media (min-width: 319px) {
+  html {
+    font-size: 4px;
+  }
+  h1 {
+    font-size: 4rem;
+  }   
+} 
 /* Smallest devices (landscape phones, 360px and up) */
 @media (min-width: 360px) {
   html {
@@ -296,6 +306,9 @@ h1 {
   h1 {
     font-size: 4rem;
   }  
+  .game-container {
+    flex-direction: row;
+  }
 } 
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
@@ -340,6 +353,9 @@ h1 {
   }
 }
 
-/* 
-@media screen and (max-width: 1081px) and (orientation: portrait) {  
+@media (max-height: 599px) {
+  html {
+    font-size: 6px;
+  }
+
 }
