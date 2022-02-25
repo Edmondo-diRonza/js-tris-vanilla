@@ -42,11 +42,7 @@ const createGameField = (rows, type = 2) => {
     }
   }
   document.getElementById("game-field").innerHTML = grid;
-  const animationArray = [
-    "bounce-in-top",
-    "roll-in-blurred-left",
-    "slide-in-bck-center",
-  ];
+  const animationArray = ["bounce-in-top", "slide-in-bck-center"];
   const randomAnimation = Math.floor(Math.random() * animationArray.length);
   document
     .querySelector("table")
@@ -77,6 +73,15 @@ const injectStatusMessage = (message, color, noRobot = false) => {
   noRobot
     ? (targetNode.innerHTML = `${oldMessages} <li><span class="li-message" style="color:${styleColor}">${message}</span></li>`)
     : (targetNode.innerHTML = `${oldMessages} <li><i class="fas fa-robot"></i> > <span class="li-message" style="color:${styleColor}">${message}</span></li>`);
+  let targetBtn = document.getElementById("clean-button");
+  if (targetNode.innerHTML.length > 474) {
+    targetBtn.disabled = false;
+    targetBtn.style.opacity = "1";
+  } else {
+    targetBtn.disabled.disabled = true;
+    targetBtn.style.opacity = ".3";
+  }
+
   targetNode.scrollIntoView({ behavior: "smooth", block: "end" });
   return true;
 };
@@ -399,7 +404,7 @@ const playAgain = () => {
 };
 
 const handleMouseOver = () => {
-  let targetNode = document.getElementById("my-name");
+  let targetNode = document.getElementById("my-name"); 
   injectStatusMessage("** Hi, my name is Edmondo! **", "b", true);
   injectStatusMessage(
     "Feel free to <br><a href='mailto:eddironz@gmail.com'>CONTACT ME</a>",

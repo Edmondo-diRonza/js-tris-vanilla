@@ -102,7 +102,8 @@ aside {
   background-size: cover;
   width: 100%;
   height: 100%;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;  
 }
 .game-wrapper {
   display: flex;
@@ -382,21 +383,30 @@ h1 {
     font-size: 14px;
   }
 }
-/* Heigth correction (smallest devices in Landscape mode) */
 
-@media (max-height: 680px) {
-  html {
-    font-size: 6px;
-  }
-  .game-container {
-    flex-direction: row;
-  }
-}
-@media (max-height: 415px) {
+/* Heigth correction (smallest devices in portrait mode) */
+
+@media (min-height: 415px) and (orientation: portrait) {
   html {
     font-size: 4px;
-  }
-  .game-container {
-    flex-direction: row;
+  }   
+}
+@media (min-height: 650px) and (orientation: portrait) {
+  html {
+    font-size: 5px;
+  } 
+}
+
+@media (min-height: 916px) and (orientation: portrait) {
+  html {
+    font-size: 6px;
+  }  
+}
+
+/* Specific devices  */
+/* Nexus 7 landscape */
+@media (height: 600px) and (width:960px) and (orientation: landscape) {
+  html {
+    font-size: 8px;
   }
 }
