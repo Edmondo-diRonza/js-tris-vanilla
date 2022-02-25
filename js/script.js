@@ -80,13 +80,21 @@ const injectStatusMessage = (message, color, noRobot = false) => {
   targetNode.scrollIntoView({ behavior: "smooth", block: "end" });
   return true;
 };
-
+const clearStatusMessage = () => {
+  let targetNode = document.getElementById("statusList");
+  targetNode.innerHTML = "";
+  basicHeader();
+};
+// simulo l'intestazione che aveva il C64 ;)
+const basicHeader = () => {
+  injectStatusMessage("**** COMMODORE 64", "", true);
+  injectStatusMessage("BASIC V2 ****", "", true);
+  injectStatusMessage("READY.", "b", true);
+  injectStatusMessage("Modalità contro il Computer", "r");
+  injectStatusMessage(`Partita n.${winObj.totalGames + 1}`);
+};
 createGameField(3, 1);
-injectStatusMessage("**** COMMODORE 64", "", true);
-injectStatusMessage("BASIC V2 ****", "", true);
-injectStatusMessage("READY.", "b", true);
-injectStatusMessage("Modalità contro il Computer", "r");
-injectStatusMessage(`Partita n.${winObj.totalGames + 1}`);
+basicHeader();
 
 //funzione per aggiungere il simbolo X oppure O alternativamente fino al gameover
 const addSign2Players = (idCella) => {
@@ -388,4 +396,14 @@ const injectTextOverlay = (
 const playAgain = () => {
   gameType === 1 ? versusComputerGame() : twoPlayersGame();
   document.getElementById("play-again").classList.add("hide");
+};
+
+const handleMouseOver = () => {
+  let targetNode = document.getElementById("my-name");
+  injectStatusMessage("** Hi, my name is Edmondo! **", "b", true);
+  injectStatusMessage(
+    "Feel free to <br><a href='mailto:eddironz@gmail.com'>CONTACT ME</a>",
+    "r",
+    true
+  );
 };
