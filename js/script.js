@@ -77,9 +77,12 @@ const injectStatusMessage = (message, color, noRobot = false) => {
   if (targetNode.innerHTML.length > 474) {
     targetBtn.disabled = false;
     targetBtn.style.opacity = "1";
+    targetBtn.style.cursor = "pointer"
+
   } else {
     targetBtn.disabled.disabled = true;
     targetBtn.style.opacity = ".3";
+    targetBtn.style.cursor = "not-allowed"
   }
 
   targetNode.scrollIntoView({ behavior: "smooth", block: "end" });
@@ -186,7 +189,7 @@ const checkWin = (symbol) => {
           `${symbol === "x" ? "x" : "o"}`
         );
         injectStatusMessage(
-          `*** <span style="color:#feb000">X: ${winObj.x} </span> - <span style="color:#3399cc">O: ${winObj.o} </span>***`,
+          `*** <span style="color:#3399cc">X: ${winObj.x} </span> - <span style="color:#feb000">O: ${winObj.o} </span>***`,
           "",
           true
         );

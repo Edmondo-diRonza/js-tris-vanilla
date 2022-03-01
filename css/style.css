@@ -23,9 +23,11 @@ aside {
   flex-direction: column;
   align-items: center;
   background: linear-gradient(270deg, #ccffff 0%, #99ccff 100%);
+  background: linear-gradient(270deg, #99ccff 0%, #3873c5 100%);
   width: 350px;
   text-align: center;
   padding: 20px 0;
+  box-shadow: 0px 2px 20px #fff
 }
 .logo-img {
   width: 40px;
@@ -86,6 +88,7 @@ aside {
   text-transform: capitalize;
   box-shadow: 0px 0px 12px white;
   max-width: 220px;
+  cursor: pointer;
   transition: all 1s;
 }
 .btn:hover {
@@ -103,7 +106,7 @@ aside {
   width: 100%;
   height: 100%;
   overflow-y: auto;
-  overflow-x: hidden;  
+  overflow-x: hidden;
 }
 .game-wrapper {
   display: flex;
@@ -128,6 +131,7 @@ aside {
   width: 8rem;
   margin: 0 10px;
   box-shadow: 0px 0px 30px #fff;
+  cursor: not-allowed;
 }
 .player-symbol {
   font-weight: 700;
@@ -165,6 +169,7 @@ td {
   font-weight: 700;
   font-size: 3.75rem;
   text-transform: uppercase;
+  cursor: pointer;
   transition: all 1s;
 }
 td:hover {
@@ -270,7 +275,7 @@ td:hover {
   opacity: 1;
   transition: all 1s;
   background-color: #392654;
-  color: #fff;
+  color: #fff;  
 }
 .overlay.hide {
   visibility: hidden;
@@ -287,6 +292,7 @@ td:hover {
   border-radius: 2rem;
   border: 0.44rem solid #392654;
   color: #392654;
+  cursor: pointer;
 }
 .text-replay:hover {
   background-color: #392654;
@@ -318,95 +324,4 @@ h1 {
   box-shadow: 0px 0px 7px #fff;
   color: rgb(90, 90, 90);
   background-color: #fff;
-}
-/* MEDIA QUERIES  */
-
-/* Smallest devices (landscape phones, 3190px and up) */
-@media (min-width: 319px) {
-  html {
-    font-size: 4px;
-  }
-  h1 {
-    font-size: 4rem;
-  }
-}
-/* Smallest devices (landscape phones, 360px and up) */
-@media (min-width: 360px) {
-  html {
-    font-size: 5px;
-  }
-  h1 {
-    font-size: 4rem;
-  }
-}
-/* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) {
-  html {
-    font-size: 8px;
-  }
-}
-/* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) {
-  html {
-    font-size: 10px;
-  }
-  .game-container {
-    flex-direction: row;
-  }
-}
-/* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-  html {
-    font-size: 10px;
-  }
-  aside {
-    display: flex;
-  }
-  .portrait-title {
-    display: none;
-  }
-  h1 {
-    font-size: 2rem;
-  }
-}
-
-/* X-Large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-  html {
-    font-size: 12px;
-  }
-}
-
-/* XX-Large devices (larger desktops, 1400px and up) */
-@media (min-width: 1400px) {
-  html {
-    font-size: 14px;
-  }
-}
-
-/* Heigth correction (smallest devices in portrait mode) */
-
-@media (min-height: 415px) and (orientation: portrait) {
-  html {
-    font-size: 4px;
-  }   
-}
-@media (min-height: 650px) and (orientation: portrait) {
-  html {
-    font-size: 5px;
-  } 
-}
-
-@media (min-height: 916px) and (orientation: portrait) {
-  html {
-    font-size: 6px;
-  }  
-}
-
-/* Specific devices  */
-/* Nexus 7 landscape */
-@media (height: 600px) and (width:960px) and (orientation: landscape) {
-  html {
-    font-size: 8px;
-  }
 }

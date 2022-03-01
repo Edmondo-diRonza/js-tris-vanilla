@@ -1,0 +1,189 @@
+/* MEDIA QUERIES  */
+
+/* Smallest devices (landscape phones, 3190px and up) */
+@media (min-width: 319px) {
+    html {
+      font-size: 4px;
+    }
+    h1 {
+      font-size: 4rem;
+    }
+  }
+  /* Smallest devices (landscape phones, 360px and up) */
+  @media (min-width: 360px) {
+    html {
+      font-size: 5px;
+    }
+    h1 {
+      font-size: 4rem;
+    }
+  }
+  /* Small devices (landscape phones, 576px and up) */
+  @media (min-width: 576px) {
+    html {
+      font-size: 8px;
+    }
+  }
+  /* Medium devices (tablets, 768px and up) */
+  @media (min-width: 768px) {
+    html {
+      font-size: 10px;
+    }
+    .game-container {
+      flex-direction: row;
+    }
+  }
+  /* Large devices (desktops, 992px and up) */
+  @media (min-width: 992px) {
+    html {
+      font-size: 10px;
+    }
+    aside {
+      display: flex;
+    }
+    .portrait-title {
+      display: none;
+    }
+    h1 {
+      font-size: 2rem;
+    }
+  }
+  
+  /* X-Large devices (large desktops, 1200px and up) */
+  @media (min-width: 1200px) {
+    html {
+      font-size: 12px;
+    }
+  }
+  
+  /* XX-Large devices (larger desktops, 1400px and up) */
+  @media (min-width: 1400px) {
+    html {
+      font-size: 14px;
+    }
+  }
+  /* XXX-Large devices (larger desktops, 19200px and up) */
+
+  @media (min-width: 1921px) {
+    html {
+      font-size: 18px;
+    }
+  }
+  
+  /* Heigth correction (smallest devices in portrait mode) */
+  
+  @media (min-height: 389px) and (orientation: portrait) {
+    html {
+      font-size: 4px;
+    }
+  }
+  @media (min-height: 650px) and (orientation: portrait) {
+    html {
+      font-size: 5px;
+    }
+  }
+  
+  @media (min-height: 916px) and (orientation: portrait) {
+    html {
+      font-size: 6px;
+    }
+  }
+  
+  /* Specific devices  and resolutions */
+  /* APPLE  */
+
+  /* ----------- iPad 1, 2, Mini and Air ----------- */
+/* Portrait */
+@media only screen 
+and (min-device-width: 768px) 
+and (max-device-width: 1024px) 
+and (orientation: portrait) 
+and (-webkit-min-device-pixel-ratio: 1) {
+  html {
+    font-size: 9px;
+  }
+}
+/* Landscape */
+@media only screen 
+and (min-device-width: 768px) 
+and (max-device-width: 1024px) 
+and (orientation: landscape) 
+and (-webkit-min-device-pixel-ratio: 1) {
+  html {
+    font-size: 10px;
+  }
+}
+
+/* ----------- iPad 3, 4 and Pro 9.7" ----------- */
+/* Portrait */
+@media only screen 
+and (min-device-width: 768px) 
+and (max-device-width: 1024px) 
+and (orientation: portrait) 
+and (-webkit-min-device-pixel-ratio: 2) {
+  html {
+    font-size: 9px;
+  }
+}
+
+/* Landscape */
+@media only screen 
+and (min-device-width: 768px) 
+and (max-device-width: 1024px) 
+and (orientation: landscape) 
+and (-webkit-min-device-pixel-ratio: 2) {
+  html {
+    font-size: 10px;
+  }
+}
+
+/* ----------- iPad Pro 12.9" ----------- */
+
+/* Portrait */
+/* Source: https://medium.com/connect-the-dots/css-media-queries-for-ipad-pro-8cad10e17106*/
+@media only screen 
+and (min-device-width: 1024px) 
+and (max-device-width: 1024px) 
+and (orientation: portrait) 
+and (-webkit-min-device-pixel-ratio: 2) {
+  aside {
+    display: none;
+  }
+  html {
+    font-size: 12px;
+  }
+}
+
+  /* most common italian resolutions */
+  @media (height: 896px) and (width: 414px) and (orientation: portrait) {
+    html {
+      font-size: 7px;
+    }
+  }
+
+  @media (height: 800px) and (width: 360px) and (orientation: portrait) {
+    html {
+      font-size: 6px;
+    }
+  }
+  @media (height: 780px) and (width: 360px) and (orientation: portrait) {
+    html {
+      font-size: 6px;
+    }
+  }
+  @media (height: 915px) and (width: 412px) and (orientation: portrait) {
+    html {
+      font-size: 7px;
+    }
+  }
+  @media (height: 812px) and (width: 375px) and (orientation: portrait) {
+    html {
+      font-size: 6px;
+    }
+  }
+  @media (height: 844px) and (width: 390px) and (orientation: portrait) {
+    html {
+      font-size: 7px;
+    }
+  }
+  
